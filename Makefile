@@ -9,11 +9,11 @@ mosquitto_events.o \
 mosquitto_utils.o \
 mosquitto_mosq.o
 MODCFLAGS = -Wall -Werror
-MODLDFLAGS =
+MODLDFLAGS = -lssl -lcrypto
 
 CC = gcc
 CFLAGS = -fPIC -g -ggdb -I/usr/include `pkg-config --cflags freeswitch` $(MODCFLAGS) -std=c11 -O2
-LDFLAGS = `pkg-config --libs freeswitch` -lmosquitto -lssl -lcrypto -lpthread -lrt $(MODLDFLAGS)
+LDFLAGS = `pkg-config --libs freeswitch` -lmosquitto -lpthread -lrt $(MODLDFLAGS)
 
 .PHONY: all
 all: $(MODNAME)
